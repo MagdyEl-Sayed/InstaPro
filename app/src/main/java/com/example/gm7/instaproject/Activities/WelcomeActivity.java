@@ -1,4 +1,4 @@
-package com.example.gm7.instaproject;
+package com.example.gm7.instaproject.Activities;
 
 /**
  * Created by GM7 on 20/12/2017.
@@ -22,6 +22,10 @@ package com.example.gm7.instaproject;
         import android.widget.Button;
         import android.widget.LinearLayout;
         import android.widget.TextView;
+
+        import com.example.gm7.instaproject.Home;
+        import com.example.gm7.instaproject.PrefManager;
+        import com.example.gm7.instaproject.R;
 
 public class WelcomeActivity extends AppCompatActivity {
 
