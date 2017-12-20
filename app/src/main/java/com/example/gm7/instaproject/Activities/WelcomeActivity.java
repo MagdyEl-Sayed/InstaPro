@@ -24,7 +24,7 @@ package com.example.gm7.instaproject.Activities;
         import android.widget.TextView;
 
         import com.example.gm7.instaproject.Home;
-        import com.example.gm7.instaproject.PrefManager;
+        import com.example.gm7.instaproject.DataManager.PrefManager;
         import com.example.gm7.instaproject.R;
 
 public class WelcomeActivity extends AppCompatActivity {

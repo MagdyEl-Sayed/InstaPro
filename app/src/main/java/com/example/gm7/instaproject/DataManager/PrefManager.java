@@ -1,4 +1,4 @@
-package com.example.gm7.instaproject;
+package com.example.gm7.instaproject.DataManager;
 
 /**
  * Created by GM7 on 20/12/2017.
