@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="#2c314e"
+    tools:context="com.example.gm7.instaproject.LoginActivity">
+
+    <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:gravity="center_horizontal|center_vertical"
+       android:orientation="vertical"
+       >
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="200dp"
+            android:background="@drawable/mylogo"
+            />
+<EditText
+    android:layout_width="350dp"
+    android:layout_height="45dp"
+    android:hint="User Name"
+    android:textColorHint="#fff"
+    android:textColor="#fff"
+    android:layout_gravity="center_horizontal"
+    android:background="@drawable/editstyle"
+    android:textAlignment="center"
+    android:drawableLeft="@drawable/ic_person_black_24dp"
+    android:paddingLeft="15px"
+    />
+       <EditText
+           android:layout_width="350dp"
+           android:layout_height="45dp"
+           android:hint="Password"
+           android:textColorHint="#fff"
+           android:textColor="#fff"
+           android:layout_gravity="center_horizontal"
+           android:background="@drawable/editstyle"
+           android:layout_marginTop="10dp"
+           android:inputType="textPassword"
+           android:textAlignment="center"
+           android:paddingLeft="15px"
+           android:drawableLeft="@drawable/ic_lock_black_24dp"
+
+           />
+        <TextView
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:text="Forget your password?"
+            android:textColorHint="#fff"
+            android:textColor="#fff"
+            android:layout_marginTop="10dp"
+            android:gravity="right"
+            />
+       <Button
+           android:layout_width="350dp"
+           android:layout_height="45dp"
+           android:layout_marginTop="10dp"
+           android:background="@drawable/btnstyle"
+           android:text="Login"
+           android:textColor="#fff"
+           android:textStyle="bold"
+           android:id="@+id/btn"
+           />
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Have not account yet?"
+                android:textColor="#fff"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Creat account"
+                android:textColor="#22baa5"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="90dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+
+            >
+
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/facebook"
+                />
+            <Button
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/google"
+                android:layout_marginLeft="50dp"
+
+                />
+        </LinearLayout>
+
+   </LinearLayout>
+
+    </RelativeLayout>
+
