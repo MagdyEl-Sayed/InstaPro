@@ -1,8 +1,10 @@
-package com.example.gm7.instaproject;
+package com.example.gm7.instaproject.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.gm7.instaproject.R;
 
 public class SplashActivity extends AppCompatActivity {
 
