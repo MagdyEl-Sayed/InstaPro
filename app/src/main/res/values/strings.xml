@@ -27,4 +27,10 @@
     <string name="menu_home">Home</string>
     <string name="menu_search">Search</string>
     <string name="menu_notifications">Notifications</string>
+
+    <string name="user_name_hint">Username</string>
+    <string name="password_text_hint">Password</string>
+    <string name="forget_password_text_hint">Forget your password?</string>
+    <string name="login_text_hint">Login</string>
+    <string name="create_account_text_hint">Have not account yet? create account</string>
 </resources>
