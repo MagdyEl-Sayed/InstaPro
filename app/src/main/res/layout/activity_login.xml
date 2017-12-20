@@ -20,6 +20,7 @@
             android:background="@drawable/mylogo"
             />
 <EditText
+    android:id="@+id/ed_username"
     android:layout_width="350dp"
     android:layout_height="45dp"
     android:hint="User Name"
