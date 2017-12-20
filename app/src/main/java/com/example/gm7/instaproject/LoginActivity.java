@@ -1,28 +1,50 @@
 package com.example.gm7.instaproject;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class LoginActivity extends AppCompatActivity {
-Button btn;
+    private EditText mEdUsername;
+    private EditText mEdPassword;
+    private Button mBtnForgetPassword;
+    private Button mBtnLogin;
+    private Button mBtnCreateAccount;
+    private Button mBtnFacebook;
+    private Button mBtnGoogle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-       btn=(Button)findViewById(R.id.btn);
-       btn.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               Intent loginIntent = new Intent(LoginActivity.this,WelcomeActivity.class);
-               loginIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK
-                       |Intent.FLAG_ACTIVITY_CLEAR_TOP);
-               startActivity(loginIntent);
-           }
-       });
+        initializeView();
+
+        mBtnLogin.setOnClickListener(onLoginBtnClicked());
 
 
+    }
+    private void initializeView(){
+        mEdUsername = findViewById(R.id.ed_username);
+        mEdPassword = findViewById(R.id.ed_password);
+        mBtnForgetPassword = findViewById(R.id.btn_forget_password);
+        mBtnLogin = findViewById(R.id.btn_login);
+        mBtnCreateAccount = findViewById(R.id.btn_create_account);
+        mBtnFacebook = findViewById(R.id.btn_facebook);
+        mBtnGoogle = findViewById(R.id.btn_google);
+    }
+
+
+    private View.OnClickListener onLoginBtnClicked(){
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent loginIntent = new Intent(LoginActivity.this,WelcomeActivity.class);
+                loginIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        |Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(loginIntent);
+            }
+        };
     }
 }
