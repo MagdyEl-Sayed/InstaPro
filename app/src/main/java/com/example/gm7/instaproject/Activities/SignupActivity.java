@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.app.ProgressDialog;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +20,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.google.common.collect.Range;
 public class SignupActivity extends AppCompatActivity implements View.OnClickListener {
 
     //defining view objects
@@ -28,6 +31,8 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     private Button buttonSignup;
     private ProgressDialog progressDialog;
 
+    //defining AwesomeValidation object
+    private AwesomeValidation awesomeValidation;
 
     //defining firebaseauth object
     private FirebaseAuth firebaseAuth;
@@ -45,6 +50,9 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
 
         buttonSignup = (Button) findViewById(R.id.buttonSignup);
+        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
+        awesomeValidation.addValidation(this, R.id.editTextEmail, Patterns.EMAIL_ADDRESS, R.string.emailerror);
+       // awesomeValidation.addValidation(this, R.id.editTextPassword, "^[2-9]{2}[0-9]{8}[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
 
         progressDialog = new ProgressDialog(this);
 
@@ -59,7 +67,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         String password  = editTextPassword.getText().toString().trim();
 
         //checking if email and passwords are empty
-        if(TextUtils.isEmpty(email)){
+       /* if(TextUtils.isEmpty(email)){
             Toast.makeText(this,"Please enter email",Toast.LENGTH_LONG).show();
             return;
         }
@@ -67,13 +75,17 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         if(TextUtils.isEmpty(password)){
             Toast.makeText(this,"Please enter password",Toast.LENGTH_LONG).show();
             return;
+        }*/
+        if (awesomeValidation.validate()) {
+            //Toast.makeText(this, "Validation Successfull", Toast.LENGTH_LONG).show();
+            progressDialog.setMessage("Registering Please Wait...");
+            progressDialog.show();
+            //process the data further
         }
-
         //if the email and password are not empty
         //displaying a progress dialog
 
-        progressDialog.setMessage("Registering Please Wait...");
-        progressDialog.show();
+
 
         //creating a new user
         firebaseAuth.createUserWithEmailAndPassword(email, password)

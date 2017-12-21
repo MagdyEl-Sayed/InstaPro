@@ -33,4 +33,7 @@
     <string name="forget_password_text_hint">Forget your password?</string>
     <string name="login_text_hint">Login</string>
     <string name="create_account_text_hint">Have not account yet? create account</string>
+    <string name="emailerror">Enter a valid email</string>
+    <string name="nameerror">Enter a valid password and must be at least 6 characters</string>
+
 </resources>
