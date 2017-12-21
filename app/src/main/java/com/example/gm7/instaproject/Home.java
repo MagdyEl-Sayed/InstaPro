@@ -65,6 +65,8 @@ public class Home extends AppCompatActivity {
             case R.id.menu_home:
                 frag = MenuFragment.newInstance(getString(R.string.text_home),
                         getColorFromRes(R.color.color_home));
+             //  frag=getSupportFragmentManager().findFragmentById(R.id.)
+
                 break;
             case R.id.menu_notifications:
                 frag = MenuFragment.newInstance(getString(R.string.text_notifications),
