@@ -23,6 +23,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         mBottomNav = (BottomNavigationView) findViewById(R.id.navigation);
+        selectFragment(mBottomNav.getMenu().getItem(0));
         mBottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -31,15 +32,8 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        MenuItem selectedItem;
-        if (savedInstanceState != null) {
-            mSelectedItem = savedInstanceState.getInt(Constants.SELECTED_ITEM, 0);
-            selectedItem = mBottomNav.getMenu().findItem(mSelectedItem);
-        } else {
-            selectedItem = mBottomNav.getMenu().getItem(0);
-        }
-        selectFragment(selectedItem);
     }
+
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -52,7 +46,7 @@ public class Home extends AppCompatActivity {
         MenuItem homeItem = mBottomNav.getMenu().getItem(0);
         if (mSelectedItem != homeItem.getItemId()) {
             // select home item
-            selectFragment(homeItem);
+            //selectFragment(homeItem);
         } else {
             super.onBackPressed();
         }
@@ -63,47 +57,22 @@ public class Home extends AppCompatActivity {
         // init corresponding fragment
         switch (item.getItemId()) {
             case R.id.menu_home:
-                frag = MenuFragment.newInstance(getString(R.string.text_home),
-                        getColorFromRes(R.color.color_home));
-             //  frag=getSupportFragmentManager().findFragmentById(R.id.)
-
-                break;
-            case R.id.menu_notifications:
-                frag = MenuFragment.newInstance(getString(R.string.text_notifications),
-                        getColorFromRes(R.color.color_notifications));
+                frag = new Menu1();
                 break;
             case R.id.menu_search:
-                frag = MenuFragment.newInstance(getString(R.string.text_search),
-                        getColorFromRes(R.color.color_search));
+                frag = new Menu2();
+                break;
+            case R.id.menu_notifications:
+                frag = new Menu3();
                 break;
         }
-
-        // update selected item
-        mSelectedItem = item.getItemId();
-
-        // uncheck the other items.
-        for (int i = 0; i< mBottomNav.getMenu().size(); i++) {
-            MenuItem menuItem = mBottomNav.getMenu().getItem(i);
-            menuItem.setChecked(menuItem.getItemId() == item.getItemId());
-        }
-
-        updateToolbarText(item.getTitle());
 
         if (frag != null) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.add(R.id.container, frag, frag.getTag());
+            ft.replace(R.id.container, frag);
             ft.commit();
+
         }
     }
 
-    private void updateToolbarText(CharSequence text) {
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setTitle(text);
-        }
-    }
-
-    private int getColorFromRes(@ColorRes int resId) {
-        return ContextCompat.getColor(this, resId);
-    }
 }
