@@ -37,15 +37,6 @@ public class LoginActivity extends AppCompatActivity  {
         //getting firebase auth object
         firebaseAuth = FirebaseAuth.getInstance();
 
-        //if the objects getcurrentuser method is not null
-        //means user is already logged in
-        if (firebaseAuth.getCurrentUser() != null) {
-            //close this activity
-            finish();
-            //opening profile activity
-            startActivity(new Intent(getApplicationContext(), WelcomeActivity.class));
-        }
-
         initializeView();
         progressDialog = new ProgressDialog(this);
 
