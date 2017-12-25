@@ -4,8 +4,7 @@ package com.example.gm7.instaproject;
  * Created by GM7 on 25/12/2017.
  */
 
-import android.app.Activity;
-import android.app.Fragment;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,19 +18,18 @@ import java.util.List;
  */
 
 public class GridView_adapter  extends RecyclerView.Adapter<GridView_adapter.ViewHolder>{
-
-    Activity activity;
-    Fragment fragment;
+    private Context mContext;
     List<Item_Pojo> items;
 
-    public GridView_adapter(Menu1 activity, List<Item_Pojo> items){
-        this.activity = activity;
+    public GridView_adapter(  List<Item_Pojo> items){
+
         this.items = items;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = activity.getLayoutInflater();
+        mContext = parent.getContext();
+        LayoutInflater layoutInflater = LayoutInflater.from(mContext);
         View view = layoutInflater.inflate(R.layout.itemmodel_grid, parent, false);
 
         return new ViewHolder(view);
