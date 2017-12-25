@@ -90,28 +90,6 @@
             android:id="@+id/btn_create_account"
             android:layout_below="@id/btn_login"
             />
-
-        <!--<LinearLayout
-            android:layout_below="@id/btn_login"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal"
-            android:gravity="center"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Have not account yet? "
-                android:textColor="#fff"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Creat account"
-                android:textColor="#22baa5"
-                />
-        </LinearLayout>-->
         <LinearLayout
             android:layout_below="@id/btn_create_account"
             android:layout_alignParentBottom="true"
