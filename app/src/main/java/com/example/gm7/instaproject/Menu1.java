@@ -41,7 +41,7 @@ public class Menu1 extends Fragment {
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
         gridRecycler.setLayoutManager(gridLayoutManager);
-        gridView_adapter = new GridView_adapter(this, socialicon);
+        gridView_adapter = new GridView_adapter(socialicon);
 
         gridRecycler.setAdapter(gridView_adapter);
         return view ;
