@@ -6,21 +6,16 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.gm7.instaproject.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.basgeekball.awesomevalidation.AwesomeValidation;
-import com.basgeekball.awesomevalidation.ValidationStyle;
-import com.google.common.collect.Range;
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity  {
     private EditText mEdUsername;
     private EditText mEdPassword;
     private Button mBtnForgetPassword;
@@ -29,8 +24,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button mBtnFacebook;
     private Button mBtnGoogle;
 
-    //defining AwesomeValidation object
-    private AwesomeValidation awesomeValidation;
     //firebase auth object
     private FirebaseAuth firebaseAuth;
 
@@ -55,12 +48,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         initializeView();
         progressDialog = new ProgressDialog(this);
-        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
-//adding validation to edittexts
-        awesomeValidation.addValidation(this, R.id.ed_username, Patterns.EMAIL_ADDRESS, R.string.emailerror);
-        //awesomeValidation.addValidation(this, R.id.ed_password, "^[2-9]{2}[0-9]{8}[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
-        mBtnLogin.setOnClickListener(this);
-        mBtnCreateAccount.setOnClickListener(this);
+
+        mBtnLogin.setOnClickListener(onLoginClicked());
+        mBtnCreateAccount.setOnClickListener(onCreateClicked());
 
     }
 
@@ -79,56 +69,51 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String email = mEdUsername.getText().toString().trim();
         String password = mEdPassword.getText().toString().trim();
 
-/*
         //checking if email and passwords are empty
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(this, "Please enter email", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        if (TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "Please enter password", Toast.LENGTH_LONG).show();
-            return;
-        }
-*/
-        if (awesomeValidation.validate()) {
-            //Toast.makeText(this, "Validation Successfull", Toast.LENGTH_LONG).show();
-            progressDialog.setMessage("Please Wait...");
-            progressDialog.show();
-            //process the data further
-        }
-        //if the email and password are not empty
-        //displaying a progress dialog
-
-
-
-        //logging in the user
-        firebaseAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        progressDialog.dismiss();
-                        //if the task is successfull
-                        if (task.isSuccessful()) {
-                            //start the profile activity
-                            finish();
-                            startActivity(new Intent(getApplicationContext(), WelcomeActivity.class));
+            mEdUsername.setError(getString(R.string.invalid_input_error));
+        } else if (TextUtils.isEmpty(password)) {
+            mEdPassword.setError(getString(R.string.invalid_input_error));
+        } else {
+            //logging in the user
+            firebaseAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            progressDialog.dismiss();
+                            //if the task is successfull
+                            if (task.isSuccessful()) {
+                                //start the profile activity
+                               Intent intent =new Intent(getApplicationContext(), WelcomeActivity.class);
+                               intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                               Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
+                            }
                         }
-                    }
-                });
+                    });
+        }
+
 
     }
 
-    @Override
-    public void onClick(View view) {
-        if (view == mBtnLogin) {
-            userLogin();
-        }
-
-        if (view == mBtnCreateAccount) {
-            finish();
-            startActivity(new Intent(this, SignupActivity.class));
-        }
+    private View.OnClickListener onLoginClicked(){
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                userLogin();
+            }
+        };
     }
+
+    private View.OnClickListener onCreateClicked(){
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(LoginActivity.this, SignupActivity.class));
+            }
+        };
+    }
+
 
 }

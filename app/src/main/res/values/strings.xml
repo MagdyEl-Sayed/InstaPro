@@ -35,5 +35,6 @@
     <string name="create_account_text_hint">Have not account yet? create account</string>
     <string name="emailerror">Enter a valid email</string>
     <string name="nameerror">Enter a valid password and must be at least 6 characters</string>
+    <string name="invalid_input_error">This Field is required</string>
 
 </resources>
