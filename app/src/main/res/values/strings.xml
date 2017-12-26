@@ -38,5 +38,8 @@
     <string name="invalid_input_error">This Field is required</string>
     <string name="login_error_title">Login Error</string>
     <string name="login_error_msg">Sorry! Your email or password is not vaild. Please try again later.</string>
+    <string name="invalid_email_error">Invalid Email Address</string>
+    <string name="register_error_title">Signup Error</string>
+    <string name="register_error_msg">Can\'t create account right now, maybe this email used before. Please try again with another one.</string>
 
 </resources>
