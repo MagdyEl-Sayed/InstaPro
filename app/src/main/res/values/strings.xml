@@ -36,5 +36,7 @@
     <string name="emailerror">Enter a valid email</string>
     <string name="nameerror">Enter a valid password and must be at least 6 characters</string>
     <string name="invalid_input_error">This Field is required</string>
+    <string name="login_error_title">Login Error</string>
+    <string name="login_error_msg">Sorry! Your email or password is not vaild. Please try again later.</string>
 
 </resources>

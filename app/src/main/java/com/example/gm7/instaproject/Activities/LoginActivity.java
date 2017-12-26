@@ -1,6 +1,6 @@
 package com.example.gm7.instaproject.Activities;
 
-import android.app.ProgressDialog;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.example.gm7.instaproject.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -16,6 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 public class LoginActivity extends AppCompatActivity  {
+
     private EditText mEdUsername;
     private EditText mEdPassword;
     private Button mBtnForgetPassword;
@@ -23,12 +25,10 @@ public class LoginActivity extends AppCompatActivity  {
     private Button mBtnCreateAccount;
     private Button mBtnFacebook;
     private Button mBtnGoogle;
-
+    private ProgressBar mLoadingProgress;
     //firebase auth object
     private FirebaseAuth firebaseAuth;
 
-    //progress dialog
-    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,6 @@ public class LoginActivity extends AppCompatActivity  {
         firebaseAuth = FirebaseAuth.getInstance();
 
         initializeView();
-        progressDialog = new ProgressDialog(this);
 
         mBtnLogin.setOnClickListener(onLoginClicked());
         mBtnCreateAccount.setOnClickListener(onCreateClicked());
@@ -53,10 +52,12 @@ public class LoginActivity extends AppCompatActivity  {
         mBtnCreateAccount = findViewById(R.id.btn_create_account);
         mBtnFacebook = findViewById(R.id.btn_facebook);
         mBtnGoogle = findViewById(R.id.btn_google);
+        mLoadingProgress = findViewById(R.id.loading_progress);
     }
 
     //method for user login
     private void userLogin() {
+
         String email = mEdUsername.getText().toString().trim();
         String password = mEdPassword.getText().toString().trim();
 
@@ -66,12 +67,14 @@ public class LoginActivity extends AppCompatActivity  {
         } else if (TextUtils.isEmpty(password)) {
             mEdPassword.setError(getString(R.string.invalid_input_error));
         } else {
+            mLoadingProgress.setVisibility(View.VISIBLE);
+
             //logging in the user
             firebaseAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            progressDialog.dismiss();
+                             mLoadingProgress.setVisibility(View.INVISIBLE);
                             //if the task is successfull
                             if (task.isSuccessful()) {
                                 //start the profile activity
@@ -79,6 +82,8 @@ public class LoginActivity extends AppCompatActivity  {
                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP |
                                Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 startActivity(intent);
+                            } else {
+                                showErrorDialog();
                             }
                         }
                     });
@@ -106,5 +111,15 @@ public class LoginActivity extends AppCompatActivity  {
         };
     }
 
+
+    private void showErrorDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+        builder.setTitle(getString(R.string.login_error_title))
+                .setMessage(getString(R.string.login_error_msg))
+                .setPositiveButton(android.R.string.ok,null)
+                .setNegativeButton(android.R.string.cancel,null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 
 }
