@@ -1,6 +1,7 @@
 package com.example.gm7.instaproject.Activities;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -120,7 +121,13 @@ public class LoginActivity extends AppCompatActivity  {
         AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
         builder.setTitle(getString(R.string.login_error_title))
                 .setMessage(getString(R.string.login_error_msg))
-                .setPositiveButton(android.R.string.ok,null)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        mEdUsername.setText("");
+                        mEdPassword.setText("");
+                    }
+                })
                 .setNegativeButton(android.R.string.cancel,null);
         AlertDialog dialog = builder.create();
         dialog.show();
