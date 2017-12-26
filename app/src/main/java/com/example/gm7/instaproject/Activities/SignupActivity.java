@@ -64,7 +64,7 @@ public class SignupActivity extends AppCompatActivity {
         }else if(TextUtils.isEmpty(password)){
            editTextPassword.setError(getString(R.string.invalid_input_error));
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            editTextEmail.setText(getString(R.string.invalid_email_error));
+            editTextEmail.setError(getString(R.string.invalid_email_error));
         } else {
             //creating a new user
             firebaseAuth.createUserWithEmailAndPassword(email, password)
