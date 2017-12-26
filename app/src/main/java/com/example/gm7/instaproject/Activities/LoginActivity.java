@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -71,6 +72,8 @@ public class LoginActivity extends AppCompatActivity  {
             mEdUsername.setError(getString(R.string.invalid_input_error));
         } else if (TextUtils.isEmpty(password)) {
             mEdPassword.setError(getString(R.string.invalid_input_error));
+        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            mEdUsername.setText(getString(R.string.invalid_email_error));
         } else {
             mLoadingProgress.setVisibility(View.VISIBLE);
 
