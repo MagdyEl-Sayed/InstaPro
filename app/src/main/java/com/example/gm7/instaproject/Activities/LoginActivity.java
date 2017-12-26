@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity  {
         } else if (TextUtils.isEmpty(password)) {
             mEdPassword.setError(getString(R.string.invalid_input_error));
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            mEdUsername.setText(getString(R.string.invalid_email_error));
+            mEdUsername.setError(getString(R.string.invalid_email_error));
         } else {
             mLoadingProgress.setVisibility(View.VISIBLE);
 
