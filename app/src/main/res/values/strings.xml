@@ -41,5 +41,10 @@
     <string name="invalid_email_error">Invalid Email Address</string>
     <string name="register_error_title">Signup Error</string>
     <string name="register_error_msg">Can\'t create account right now, maybe this email used before. Please try again with another one.</string>
+    <string name="default_description">Short discription for project</string>
+    <string name="email_hint">Email</string>
+    <string name="sign_up_hint">Sign up</string>
+    <string name="have_account_text_hint">Already have account? Login</string>
+    <string name="menu_profile">Profile</string>
 
 </resources>
