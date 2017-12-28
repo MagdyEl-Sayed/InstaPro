@@ -37,11 +37,17 @@ public class SignupActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference reference;
     private String userId;
+    private Button mBtnHaveAccount;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
+
+        assert getSupportActionBar() != null;
+        getSupportActionBar().hide();
 
         //initializing firebase auth object
         firebaseAuth = FirebaseAuth.getInstance();
@@ -51,10 +57,12 @@ public class SignupActivity extends AppCompatActivity {
         //initializing views
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        buttonSignup = (Button) findViewById(R.id.buttonSignup);
+        buttonSignup = (Button) findViewById(R.id.btn_signup);
+        mBtnHaveAccount = findViewById(R.id.btn_have_account);
 
         //attaching listener to button
         buttonSignup.setOnClickListener(onRegisterClicked());
+        mBtnHaveAccount.setOnClickListener(onHaveAccountClicked());
     }
 
     private void registerUser(){
@@ -135,5 +143,17 @@ public class SignupActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK
                 |Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+    }
+
+    private View.OnClickListener onHaveAccountClicked(){
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SignupActivity.this,LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                        Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        };
     }
 }
