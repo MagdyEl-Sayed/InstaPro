@@ -1,44 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.gm7.instaproject.Activities.SignupActivity">
+    android:background="@color/colorForLoginScreen"
+    android:fitsSystemWindows="true">
 
-    <LinearLayout
-        android:layout_centerVertical="true"
+    <RelativeLayout
+        android:layout_margin="@dimen/activity_horizontal_margin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        tools:context=".Activities.SignupActivity">
+
+        <ImageView
+            android:id="@+id/img_header"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:contentDescription="@string/app_name"
+            android:scaleType="fitXY"
+            android:src="@drawable/mylogo" />
 
         <EditText
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/img_header"
             android:layout_margin="15dp"
-            android:hint="Enter email"
-            android:inputType="textEmailAddress" />
+            android:background="@drawable/editstyle"
+            android:hint="@string/email_hint"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white" />
 
         <EditText
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/editTextEmail"
             android:layout_margin="15dp"
-            android:hint="Enter password"
-            android:inputType="textPassword" />
+            android:background="@drawable/editstyle"
+            android:hint="@string/password_text_hint"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white" />
 
         <Button
-            android:id="@+id/buttonSignup"
+            android:id="@+id/btn_signup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/editTextPassword"
             android:layout_margin="15dp"
-            android:text="Signup" />
+            android:background="@drawable/btnstyle"
+            android:text="@string/sign_up_hint"
+            android:textColor="@android:color/white"
+            android:textSize="23sp"
+            android:textStyle="bold" />
 
-    </LinearLayout>
-
-</RelativeLayout>
+        <Button
+            android:id="@+id/btn_have_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btn_signup"
+            android:background="@android:color/transparent"
+            android:padding="10dp"
+            android:text="@string/have_account_text_hint"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+</android.support.v4.widget.NestedScrollView>
