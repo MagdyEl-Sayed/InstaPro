@@ -43,8 +43,7 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.homeViewHolder
 
         public homeViewHolder(View itemView) {
             super(itemView);
-            mImgThumbnails = itemView.findViewById(R.id.img_thumbnails);
-            mTvDescription = itemView.findViewById(R.id.tv_description);
+
         }
     }
 }
