@@ -6,6 +6,7 @@ import java.util.Map;
 
 /**
  * Created by emad on 12/29/17.
+ *
  */
 
 public class PostModel implements Serializable {
