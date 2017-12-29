@@ -30,7 +30,7 @@ public class SearchFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View fragmentView = inflater.inflate(R.layout.fragment_menu_2,container,false);
+        View fragmentView = inflater.inflate(R.layout.fragment_search_layout,container,false);
 
         return fragmentView;
     }
