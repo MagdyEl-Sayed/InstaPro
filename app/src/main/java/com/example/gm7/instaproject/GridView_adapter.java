@@ -52,7 +52,7 @@ public class GridView_adapter  extends RecyclerView.Adapter<GridView_adapter.Vie
 
         public ViewHolder(View itemView) {
             super(itemView);
-            image = (ImageView) itemView.findViewById(R.id.imageView);
+            image = (ImageView) itemView.findViewById(R.id.img_thumbnails);
         }
     }
 }
