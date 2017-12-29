@@ -1,17 +1,17 @@
 package com.example.gm7.instaproject;
 
 import android.os.Bundle;
-import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.example.gm7.instaproject.DataManager.Constants;
+import com.example.gm7.instaproject.Fragments.HomeFragment;
+import com.example.gm7.instaproject.Fragments.ProfileFragment;
+import com.example.gm7.instaproject.Fragments.SearchFragment;
 
 public class Home extends AppCompatActivity {
     private BottomNavigationView mBottomNav;
@@ -57,13 +57,16 @@ public class Home extends AppCompatActivity {
         // init corresponding fragment
         switch (item.getItemId()) {
             case R.id.menu_home:
-                frag = new Menu1();
+                frag = new HomeFragment();
                 break;
             case R.id.menu_search:
-                frag = new Menu2();
+                frag = new SearchFragment();
                 break;
             case R.id.menu_notifications:
                 frag = new Menu3();
+                break;
+            case R.id.menu_profile:
+                frag = new ProfileFragment();
                 break;
         }
 
