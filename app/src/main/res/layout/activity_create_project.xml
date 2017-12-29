@@ -37,6 +37,17 @@
         android:scaleType="fitXY"
         android:layout_marginTop="10dp"/>
 
+    <ImageView
+        android:layout_below="@id/main_projectImage"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@id/third_projectImage"
+        android:id="@+id/last_projectImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_add_image"
+        android:contentDescription="@string/app_name"
+        android:scaleType="fitXY"
+        android:layout_marginTop="10dp"/>
     <EditText
         android:id="@+id/ed_project_description"
         android:layout_width="match_parent"

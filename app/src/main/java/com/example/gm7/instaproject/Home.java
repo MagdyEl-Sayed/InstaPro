@@ -63,7 +63,7 @@ public class Home extends AppCompatActivity {
                 frag = new SearchFragment();
                 break;
             case R.id.menu_notifications:
-                frag = new Menu3();
+
                 break;
             case R.id.menu_profile:
                 frag = new ProfileFragment();
