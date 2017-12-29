@@ -12,6 +12,7 @@ import com.example.gm7.instaproject.R;
 
 /**
  * Created by emad on 12/21/17.
+ *
  */
 
 public class ProfileFragment extends Fragment {
