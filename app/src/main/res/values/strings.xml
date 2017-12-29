@@ -46,5 +46,8 @@
     <string name="sign_up_hint">Sign up</string>
     <string name="have_account_text_hint">Already have account? Login</string>
     <string name="menu_profile">Profile</string>
+    <string name="action_add_project">Add new Project</string>
+    <string name="project_content_hint">Write a description for your project</string>
+    <string name="save_text">Save</string>
 
 </resources>
