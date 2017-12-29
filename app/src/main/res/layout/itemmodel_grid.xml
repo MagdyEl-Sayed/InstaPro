@@ -42,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="hello my friends for my first post"
+                android:text="hello my friends for my first amazing post"
                 android:layout_below="@id/thumbnails"/>
         </RelativeLayout>
     </android.support.v7.widget.CardView>
