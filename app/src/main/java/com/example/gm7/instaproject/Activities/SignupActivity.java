@@ -123,7 +123,8 @@ public class SignupActivity extends AppCompatActivity {
     private void uploadUserInfo(String email){
 
         String key = reference.child(userId).push().getKey();
-        Map<String,Object> userValue = new UserModel().insertUser(userId,email);
+        UserModel model = new UserModel("",email,"","",userId);
+        Map<String,Object> userValue = model.insertUser();
         Map<String,Object> childUpdates = new HashMap<>();
         childUpdates.put("users/"+key,userValue);
         reference.updateChildren(childUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
