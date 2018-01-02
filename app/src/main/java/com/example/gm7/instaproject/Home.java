@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import com.example.gm7.instaproject.DataManager.Constants;
+import com.example.gm7.instaproject.Fragments.FavouriteFragment;
 import com.example.gm7.instaproject.Fragments.HomeFragment;
 import com.example.gm7.instaproject.Fragments.ProfileFragment;
 import com.example.gm7.instaproject.Fragments.SearchFragment;
@@ -63,7 +64,7 @@ public class Home extends AppCompatActivity {
                 frag = new SearchFragment();
                 break;
             case R.id.menu_notifications:
-
+                frag = new FavouriteFragment();
                 break;
             case R.id.menu_profile:
                 frag = new ProfileFragment();

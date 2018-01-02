@@ -9,4 +9,6 @@ public class Constants {
     public static final String SELECTED_ITEM = "arg_selected_item";
     // Shared preferences file name
     public static final String PREF_NAME = "intro_pref";
+
+    public static String PROFILE_IMAGES = "ProjectImages";
 }

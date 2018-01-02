@@ -4,17 +4,19 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
+        app:civ_border_color="#FF000000"
+        app:civ_border_width="1dp"
         android:id="@+id/authorImage"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:contentDescription="@string/app_name"
-        android:scaleType="fitXY"
         android:src="@drawable/ic_person_black_24dp"/>
     <TextView
+        android:padding="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/authorImage"
@@ -39,6 +41,7 @@
                 android:src="@mipmap/ic_add_image"
                 android:scaleType="fitXY"/>
             <TextView
+                android:id="@+id/project_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
