@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,7 +17,18 @@ import android.view.ViewGroup;
 
 import com.example.gm7.instaproject.Activities.CreateProjectActivity;
 import com.example.gm7.instaproject.Adapter.HomeAdapter;
+import com.example.gm7.instaproject.Model.PostModel;
 import com.example.gm7.instaproject.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by emad on 12/29/17.
@@ -26,6 +38,10 @@ import com.example.gm7.instaproject.R;
 public class HomeFragment extends Fragment {
     private RecyclerView mHomeRecycler;
     private HomeAdapter mAdapter;
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase database;
+    private DatabaseReference reference;
+    private List<PostModel> postModelList;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,11 +58,18 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View fragmentView = inflater.inflate(R.layout.fragment_home_layout,container,false);
         mHomeRecycler = fragmentView.findViewById(R.id.home_recycler);
-        mAdapter = new HomeAdapter();
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         mHomeRecycler.setLayoutManager(layoutManager);
         mHomeRecycler.setHasFixedSize(true);
-        mHomeRecycler.setAdapter(mAdapter);
+
+
+        database =FirebaseDatabase.getInstance();
+        reference = database.getReference();
+        postModelList = new ArrayList<>();
+
+        getAllPosts();
+
         return fragmentView;
     }
 
@@ -66,4 +89,49 @@ public class HomeFragment extends Fragment {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    private void getAllPosts(){
+        Log.e("home-> fragment","kjbvhgc");
+
+        reference.child("posts").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                GenericTypeIndicator<PostModel> post = new GenericTypeIndicator<PostModel>(){};
+                PostModel model = dataSnapshot.getValue(post);
+                postModelList.add(model);
+                mAdapter = new HomeAdapter(postModelList);
+                mHomeRecycler.setAdapter(mAdapter);
+                mAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                postModelList.clear();
+                GenericTypeIndicator<PostModel> post = new GenericTypeIndicator<PostModel>(){};
+                PostModel model = dataSnapshot.getValue(post);
+                postModelList.add(model);
+                mAdapter = new HomeAdapter(postModelList);
+                mHomeRecycler.setAdapter(mAdapter);
+                mAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
+
 }
