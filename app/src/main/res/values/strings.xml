@@ -49,5 +49,9 @@
     <string name="action_add_project">Add new Project</string>
     <string name="project_content_hint">Write a description for your project</string>
     <string name="save_text">Save</string>
+    <string name="grant_text">Grant</string>
+    <string name="storage_permission_mesg">This app need permissions for storage in order to get the files you want to use in the app.</string>
+    <string name="storage_permission_title">Needed Permission</string>
+    <string name="select_image">Select image from</string>
 
 </resources>
