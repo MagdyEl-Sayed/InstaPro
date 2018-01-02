@@ -125,12 +125,14 @@ public class CreateProjectActivity extends AppCompatActivity {
         }
     }
 
+    //------------ request Image from Gallery --------------//
     private void onOpenGallery(int request){
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         startActivityForResult(Intent.createChooser(intent,getString(R.string.select_image)),request);
     }
 
+    //------------ create random string for files names --------------//
     private Bitmap getImageFromUri(Intent data){
         InputStream imageStream = null;
         Uri selectedImage = data.getData();
@@ -247,7 +249,7 @@ public class CreateProjectActivity extends AppCompatActivity {
         };
     }
 
-    //----------- uploading Project images to firebase storage --------------//
+    //----------- uploading Project images to Firebase storage --------------//
     private void uploadingProjectMainImage(){
         mLoadingProgress.setVisibility(View.VISIBLE);
         String email = firebaseUser.getEmail();
@@ -373,11 +375,13 @@ public class CreateProjectActivity extends AppCompatActivity {
         });
     }
 
+    //------------ cache the image of the passed ImageView and get Image as bitmap --------------//
     private Bitmap prepareImage(ImageView imageView){
         imageView.setDrawingCacheEnabled(true);
         imageView.buildDrawingCache();
         return imageView.getDrawingCache();
     }
+
     //------------ create random string for files names --------------//
     private String randomName(){
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss",
@@ -385,12 +389,13 @@ public class CreateProjectActivity extends AppCompatActivity {
         return  "IMG_"+timeStamp;
     }
 
+    //------------ get current time stamp as string --------------//
     private String getTimeStamp(){
         return new SimpleDateFormat("yyyyMMdd_HHmmss",
                 Locale.getDefault()).format(new Date());
     }
 
-    //----------- inserting Post information in the firebase database --------//
+    //----------- inserting Post information in the Firebase database --------//
     private void insertPostInfo(){
         String mainImage = sharedData.getMainProjectUrl();
         String Image2 = sharedData.getImage2Url();
@@ -428,6 +433,7 @@ public class CreateProjectActivity extends AppCompatActivity {
         });
     }
 
+    //------------ Error message is something goes wrong --------------//
     private void showErrorMessage() {
 
     }
