@@ -53,7 +53,7 @@ public class SignupActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
         reference = database.getReference();
-        userId = firebaseAuth.getCurrentUser().getUid();
+
         //initializing views
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
@@ -86,6 +86,8 @@ public class SignupActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             //checking if success
                             if(task.isSuccessful()){
+                                assert firebaseAuth.getCurrentUser() !=null;
+                                userId = firebaseAuth.getCurrentUser().getUid();
                                 uploadUserInfo(email);
                             }else{
                                 showErrorDialog();
